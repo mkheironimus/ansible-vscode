@@ -7,6 +7,6 @@ Install vscode, for when I think vscode might be useful.
 
 ```yaml
 roles:
-  - name: borgbackup
+  - name: vscode
     src: https://github.com/mkheironimus/ansible-vscode.git
 ```
