@@ -11,7 +11,7 @@
 - name: Add apt keys
   ansible.builtin.get_url:
     url: "{{ vscode_apt_key_url }}"
-    dest: "{{ vscode_apt_key_dir }}/vscode.gpg"
+    dest: "{{ vscode_apt_key_dir }}/vscode.key"
     checksum: "{{ vscode_apt_key_checksum }}"
     owner: root
     group: root
