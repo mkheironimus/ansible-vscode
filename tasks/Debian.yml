@@ -1,0 +1,31 @@
+---
+- name: Create apt key directory
+  file:
+    path: "{{ vscode_apt_key_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  when: vscode_manage_apt_key_dir and not vscode_remove
+
+- name: Add apt keys
+  ansible.builtin.get_url:
+    url: "{{ vscode_apt_key_url }}"
+    dest: "{{ vscode_apt_key_dir }}/vscode.gpg"
+    checksum: "{{ vscode_apt_key_checksum }}"
+    owner: root
+    group: root
+    mode: "0644"
+  when: not vscode_remove
+
+- name: Add apt repositories
+  template:
+    src: vscode.list.j2
+    dest: /etc/apt/sources.list.d/vscode.list
+    owner: root
+    group: root
+    mode: "0644"
+  vars:
+    apt_key_dir: "{{ vscode_apt_key_dir }}"
+    arch: "{{ vscode_apt_arch_map[ansible_architecture] | default(ansible_architecture) }}"
+  when: not vscode_remove

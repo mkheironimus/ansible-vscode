@@ -1,0 +1,15 @@
+---
+# Uninstall?
+vscode_remove: false
+
+# Package management names
+vscode_packages:
+  - code
+
+# Apt repository configuration
+vscode_apt_key_dir: /usr/local/share/apt
+vscode_manage_apt_key_dir: true
+vscode_apt_key_url: https://packages.microsoft.com/keys/microsoft.asc
+vscode_apt_key_checksum: sha256:2cfd20a306b2fa5e25522d78f2ef50a1f429d35fd30bd983e2ebffc2b80944fa
+vscode_apt_arch_map:
+  x86_64: amd64
