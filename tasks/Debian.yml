@@ -28,4 +28,10 @@
   vars:
     apt_key_dir: "{{ vscode_apt_key_dir }}"
     arch: "{{ vscode_apt_arch_map[ansible_architecture] | default(ansible_architecture) }}"
+  register: vscode_apt_added
   when: not vscode_remove
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: yes
+  when: vscode_apt_added.changed and not vscode_remove
