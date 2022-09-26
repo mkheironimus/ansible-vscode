@@ -26,6 +26,6 @@
         - "{{ ansible_lsb.id }}.yml"
 
 - name: Install packages
-  package:
+  ansible.builtin.package:
     name: "{{ vscode_packages }}"
     state: "{{ 'absent' if vscode_remove else 'present' }}"

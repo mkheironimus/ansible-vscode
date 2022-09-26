@@ -1,6 +1,6 @@
 ---
 - name: Create apt key directory
-  file:
+  ansible.builtin.file:
     path: "{{ vscode_apt_key_dir }}"
     state: directory
     owner: root
@@ -19,7 +19,7 @@
   when: not vscode_remove
 
 - name: Add apt repositories
-  template:
+  ansible.builtin.template:
     src: vscode.list.j2
     dest: /etc/apt/sources.list.d/vscode.list
     owner: root
